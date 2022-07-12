@@ -2,11 +2,13 @@ import sys
 import cv2 as cv
 import numpy as np
 import matplotlib.pyplot as plt
+import pandas as pd
 from PIL import Image, ImageOps
 
 #1) Load Image-------------------------------------
 img_name = 'beatles_-_abbey_road.jpg'
 img = np.array(Image.open('beatles_-_abbey_road.jpg'))
+width, height = img.size
 
 #2) Determine probability that pixel gets point dropped-------------------------------------------------------
 
@@ -28,6 +30,10 @@ img_edges = cv.convertScaleAbs(dst)
 cv.imshow("", img_edges)
 cv.waitKey(0)
 chances = img_edges/255
+n = 1000
+
+chances_array = pd.DataFrame(data=chances)
+chances_array
 
 
 #3)Delaunay Triangulation---------------------------------------------------------------------------------------
